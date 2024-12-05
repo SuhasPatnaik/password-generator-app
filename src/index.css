@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "JetBrains Mono Bold";
+  src: url("/fonts/static/JetBrainsMono-Bold.ttf");
+}
+
+@import "tailwindcss";
+
+@theme {
+  /* accent colors */
+  --color-red: #f64a4a;
+  --color-orange: #fb7c58;
+  --color-yellow: #f8cd65;
+  --color-neon-green: #a4ffaf;
+
+  /* Neutral colors */
+  --color-almost-white: #e6e5ea;
+  --color-grey: #817d92;
+  --color-dark-grey: #24232c;
+  --color-very-dark-grey: #18171f;
+
+  --font-family-jbmb: "JetBrains Mono Bold";
+}
+
+body {
+  font-family: var(--font-family-jbmb);
+}
