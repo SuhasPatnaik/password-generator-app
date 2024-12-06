@@ -19,8 +19,13 @@
   --color-very-dark-grey: #18171f;
 
   --font-family-jbmb: "JetBrains Mono Bold";
+
+  --text-body-md: 1.125rem;
+  --text-heading-md: 1.5rem;
+  --text-heading-lg: 2rem;
 }
 
 body {
+  @apply bg-very-dark-grey text-almost-white grid place-content-center;
   font-family: var(--font-family-jbmb);
 }
