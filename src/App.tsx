@@ -47,32 +47,29 @@ function LengthSlider() {
   return (
     <>
       <div className="grid grid-cols-2 items-center bg-dark-grey p-4 gap-4">
-        <label>Character Length</label>
+        <label htmlFor="charLength">Character Length</label>
         <p className="justify-self-end text-heading-md text-neon-green">
           {charLength}
         </p>
         <div className="col-span-2 h-2 bg-very-dark-grey relative">
+          {/* slider track — the visual background of the slider */}
           <div
             className="absolute h-full bg-neon-green"
             style={{
               width: `${(charLength / 16) * 100}%`,
             }}
           />
+          {/* "filled" track - dynamically adjusted based on charLength */}
           <input
             type="range"
+            id="charLength"
             min={0}
             max={16}
             value={charLength}
             onChange={(e) => setCharLength(Number(e.target.value))}
-            className="absolute w-full h-full appearance-none bg-transparent outline-none 
-        [&::-webkit-slider-thumb]:appearance-none 
-        [&::-webkit-slider-thumb]:bg-almost-white 
-        [&::-webkit-slider-thumb]:h-4 
-        [&::-webkit-slider-thumb]:w-4 
-        [&::-webkit-slider-thumb]:rounded-full 
-        [&::-webkit-slider-thumb]:cursor-pointer 
-        [&::-webkit-slider-thumb]:z-20"
+            className="absolute w-full h-full appearance-none outline-none custom-thumb"
           />
+          {/* Fully unstyled input <=> thumb <=> draggable element */}
         </div>
       </div>
     </>

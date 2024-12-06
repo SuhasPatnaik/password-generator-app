@@ -1,0 +1,9 @@
+.custom-thumb::-webkit-slider-thumb {
+  appearance: none;
+  background-color: #ffffff;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+}
