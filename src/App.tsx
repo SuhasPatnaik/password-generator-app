@@ -109,10 +109,10 @@ function ComplexityOptions() {
 }
 
 const strengthLevels = {
-  "Too Weak!": { filledBars: 1, color: "bg-red" },
-  Weak: { filledBars: 2, color: "bg-orange" },
-  Medium: { filledBars: 3, color: "bg-yellow" },
-  Strong: { filledBars: 4, color: "bg-neon-green" },
+  tooWeak: { label: "Too Weak!", filledBars: 1, color: "bg-red" },
+  weak: { label: "Weak", filledBars: 2, color: "bg-orange" },
+  medium: { label: "Medium", filledBars: 3, color: "bg-yellow" },
+  strong: { label: "Strong", filledBars: 4, color: "bg-neon-green" },
 };
 
 function StrengthGauge() {
@@ -125,10 +125,10 @@ function StrengthGauge() {
           {Array.from({ length: 4 }).map((_, index) => (
             <div
               key={index}
-              className={`w-4 h-10 border border-white ${
-                index < strengthLevels["Strong"].filledBars
-                  ? strengthLevels["Strong"].color
-                  : "bg-transparent"
+              className={`w-2.5 h-7 ${
+                index < strengthLevels.tooWeak.filledBars
+                  ? strengthLevels.tooWeak.color
+                  : "border-2 border-white"
               }`}
             ></div>
           ))}
