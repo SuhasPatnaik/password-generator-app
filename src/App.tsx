@@ -23,7 +23,8 @@ function PasswordField() {
         <img
           src="/images/icon-copy.svg"
           alt="Copy icon"
-          className="object-none"
+          className="object-none cursor-pointer"
+          onClick={() => alert("Add a handler fn here")}
         />
       </div>
     </>
@@ -51,15 +52,16 @@ function LengthSlider() {
         <p className="justify-self-end text-heading-md text-neon-green">
           {charLength}
         </p>
+        {/* slider track — the visual background of the slider */}
         <div className="col-span-2 h-2 bg-very-dark-grey relative">
-          {/* slider track — the visual background of the slider */}
+          {/* "filled" track - dynamically adjusted based on charLength */}
           <div
             className="absolute h-full bg-neon-green"
             style={{
               width: `${(charLength / 16) * 100}%`,
             }}
           />
-          {/* "filled" track - dynamically adjusted based on charLength */}
+          {/* Fully unstyled input <=> thumb <=> draggable element */}
           <input
             type="range"
             id="charLength"
@@ -69,7 +71,6 @@ function LengthSlider() {
             onChange={(e) => setCharLength(Number(e.target.value))}
             className="absolute w-full h-full appearance-none outline-none custom-thumb"
           />
-          {/* Fully unstyled input <=> thumb <=> draggable element */}
         </div>
       </div>
     </>
@@ -86,20 +87,55 @@ const complexityOptions: string[] = [
 function ComplexityOptions() {
   return (
     <>
-      <li className="list-none">
-        <input
-          type="checkbox"
-          name="uppercase"
-          id="uppercase"
-          className="accent-neon-green h-4 w-4"
-        />
+      <li className="list-none flex flex-col gap-2">
+        {complexityOptions.map((option) => {
+          return (
+            <>
+              <div className="flex gap-4 items-center">
+                <input
+                  type="checkbox"
+                  name="uppercase"
+                  id="uppercase"
+                  className="accent-neon-green h-5 w-5"
+                />
+                <ul>{option}</ul>
+              </div>
+            </>
+          );
+        })}
       </li>
     </>
   );
 }
 
+const strengthLevels = {
+  "Too Weak!": { filledBars: 1, color: "bg-red" },
+  Weak: { filledBars: 2, color: "bg-orange" },
+  Medium: { filledBars: 3, color: "bg-yellow" },
+  Strong: { filledBars: 4, color: "bg-neon-green" },
+};
+
 function StrengthGauge() {
-  return <></>;
+  return (
+    <>
+      <div className="flex bg-very-dark-grey p-2 items-center justify-between">
+        <p className="text-grey">STRENGTH</p>
+        <div className="flex gap-2 items-center">
+          <p className="text-heading-md">Too Weak!</p>
+          {Array.from({ length: 4 }).map((_, index) => (
+            <div
+              key={index}
+              className={`w-4 h-10 border border-white ${
+                index < strengthLevels["Strong"].filledBars
+                  ? strengthLevels["Strong"].color
+                  : "bg-transparent"
+              }`}
+            ></div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
 }
 
 function GenerateBtn() {
