@@ -4,9 +4,11 @@ import "./App.css";
 function App() {
   return (
     <>
-      <h1 className="text-grey text-center">Password Generator</h1>
-      <PasswordField />
-      <PasswordSettings />
+      <div className="py-16">
+        <h1 className="text-grey text-center">Password Generator</h1>
+        <PasswordField />
+        <PasswordSettings />
+      </div>
     </>
   );
 }
@@ -34,10 +36,14 @@ function PasswordField() {
 function PasswordSettings() {
   return (
     <>
-      <LengthSlider />
-      <ComplexityOptions />
-      <StrengthGauge />
-      <GenerateBtn />
+      <div className="flex flex-col gap-8 bg-dark-grey mt-4 p-4">
+        <LengthSlider />
+        <ComplexityOptions />
+        <div className="flex flex-col gap-4">
+          <StrengthGauge />
+          <GenerateBtn />
+        </div>
+      </div>
     </>
   );
 }
@@ -47,7 +53,7 @@ function LengthSlider() {
 
   return (
     <>
-      <div className="grid grid-cols-2 items-center bg-dark-grey p-4 gap-4">
+      <div className="grid grid-cols-2 items-center gap-4">
         <label htmlFor="charLength">Character Length</label>
         <p className="justify-self-end text-heading-md text-neon-green">
           {charLength}
@@ -118,16 +124,16 @@ const strengthLevels = {
 function StrengthGauge() {
   return (
     <>
-      <div className="flex bg-very-dark-grey p-2 items-center justify-between">
+      <div className="flex bg-very-dark-grey items-center p-4 justify-between">
         <p className="text-grey">STRENGTH</p>
         <div className="flex gap-2 items-center">
-          <p className="text-heading-md">Too Weak!</p>
+          <p className="text-body-md uppercase">Medium</p>
           {Array.from({ length: 4 }).map((_, index) => (
             <div
               key={index}
               className={`w-2.5 h-7 ${
-                index < strengthLevels.tooWeak.filledBars
-                  ? strengthLevels.tooWeak.color
+                index < strengthLevels.medium.filledBars
+                  ? strengthLevels.medium.color
                   : "border-2 border-white"
               }`}
             ></div>
@@ -139,7 +145,14 @@ function StrengthGauge() {
 }
 
 function GenerateBtn() {
-  return <></>;
+  return (
+    <>
+      <button className="flex justify-center items-center gap-4 w-full bg-neon-green py-4 cursor-pointer">
+        <p className="text-very-dark-grey uppercase ">Generate</p>
+        <img src="images/icon-arrow-right.svg" alt="Right arrow" />
+      </button>
+    </>
+  );
 }
 
 export default App;
