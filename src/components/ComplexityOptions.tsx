@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const complexityOptions = [
   { id: "uppercase", name: "Include Uppercase Letters" },
   { id: "lowercase", name: "Include Lowercase Letters" },
@@ -7,26 +5,7 @@ const complexityOptions = [
   { id: "symbol", name: "Include Symbols" },
 ];
 
-export default function ComplexityOptions() {
-  const [isUppercaseChecked, setIsUppercaseChecked] = useState(false);
-  const [isLowercaseChecked, setIsLowercaseChecked] = useState(false);
-  const [isNumberChecked, setIsNumberChecked] = useState(false);
-  const [isSymbolChecked, setIsSymbolsChecked] = useState(false);
-
-  const handleCheckboxSelection = (e, optionId) => {
-    const value = e.target.checked;
-
-    if (optionId === "uppercase") {
-      setIsUppercaseChecked(value);
-    } else if (optionId === "lowercase") {
-      setIsLowercaseChecked(value);
-    } else if (optionId === "number") {
-      setIsNumberChecked(value);
-    } else {
-      setIsSymbolsChecked(value);
-    }
-  };
-
+export default function ComplexityOptions({ onCheckboxSelection }) {
   return (
     <>
       <li className="list-none flex flex-col gap-2">
@@ -38,7 +17,7 @@ export default function ComplexityOptions() {
                   type="checkbox"
                   name={option.name}
                   id={option.id}
-                  onChange={(e) => handleCheckboxSelection(e, option.id)}
+                  onChange={(e) => onCheckboxSelection(e, option.id)}
                   className="accent-neon-green h-5 w-5"
                 />
                 <ul>{option.name}</ul>
