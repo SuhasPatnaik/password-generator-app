@@ -5,19 +5,41 @@ const strengthLevels = {
   strong: { label: "Strong", filledBars: 4, color: "bg-neon-green" },
 };
 
-export default function StrengthGauge() {
+export default function StrengthGauge({
+  isUppercaseChecked,
+  isLowercaseChecked,
+  isNumberChecked,
+  isSymbolChecked,
+}) {
+  const numberOfCheckedOptions =
+    Number(isUppercaseChecked) +
+    Number(isLowercaseChecked) +
+    Number(isNumberChecked) +
+    Number(isSymbolChecked);
+
+  const strengthLevelKey =
+    numberOfCheckedOptions <= 1
+      ? "tooWeak"
+      : numberOfCheckedOptions === 2
+      ? "weak"
+      : numberOfCheckedOptions === 3
+      ? "medium"
+      : "strong";
+
   return (
     <>
       <div className="flex bg-very-dark-grey items-center p-4 justify-between">
         <p className="text-grey">STRENGTH</p>
         <div className="flex gap-2 items-center">
-          <p className="text-body-md uppercase">Medium</p>
+          <p className="text-body-md uppercase">
+            {strengthLevels[strengthLevelKey].label}
+          </p>
           {Array.from({ length: 4 }).map((_, index) => (
             <div
               key={index}
               className={`w-2.5 h-7 ${
-                index < strengthLevels.medium.filledBars
-                  ? strengthLevels.medium.color
+                index < strengthLevels[strengthLevelKey].filledBars
+                  ? strengthLevels[strengthLevelKey].color
                   : "border-2 border-white"
               }`}
             ></div>

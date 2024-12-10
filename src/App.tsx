@@ -98,7 +98,12 @@ function PasswordSettings({
         <LengthSlider />
         <ComplexityOptions onCheckboxSelection={onCheckboxSelection} />
         <div className="flex flex-col gap-4">
-          <StrengthGauge />
+          <StrengthGauge
+            isUppercaseChecked={isUppercaseChecked}
+            isLowercaseChecked={isLowercaseChecked}
+            isNumberChecked={isNumberChecked}
+            isSymbolChecked={isSymbolChecked}
+          />
           <GenerateBtn
             onGeneratePassword={onGeneratePassword}
             isUppercaseChecked={isUppercaseChecked}
