@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export default function GenerateBtn({
   onGeneratePassword,
   isUppercaseChecked,
@@ -5,23 +7,40 @@ export default function GenerateBtn({
   isNumberChecked,
   isSymbolChecked,
 }) {
+  const [noOptionsSelected, setNoOptionsSelected] = useState(false);
+
+  const onGenerateBtnClick = () => {
+    if (
+      !isUppercaseChecked &&
+      !isLowercaseChecked &&
+      !isNumberChecked &&
+      !isSymbolChecked
+    ) {
+      setNoOptionsSelected(true);
+      return;
+    }
+    setNoOptionsSelected(false);
+    onGeneratePassword(
+      8,
+      isUppercaseChecked,
+      isLowercaseChecked,
+      isNumberChecked,
+      isSymbolChecked
+    );
+  };
+
   return (
     <>
       <button
         className="flex justify-center items-center gap-4 w-full bg-neon-green py-4 cursor-pointer"
-        onClick={() =>
-          onGeneratePassword(
-            20,
-            isUppercaseChecked,
-            isLowercaseChecked,
-            isNumberChecked,
-            isSymbolChecked
-          )
-        }
+        onClick={onGenerateBtnClick}
       >
         <p className="text-very-dark-grey uppercase ">Generate</p>
         <img src="images/icon-arrow-right.svg" alt="Right arrow" />
       </button>
+      {noOptionsSelected && (
+        <p className="text-red text-sm">Please select atleast 1 option!</p>
+      )}
     </>
   );
 }
