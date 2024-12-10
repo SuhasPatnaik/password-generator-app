@@ -13,6 +13,7 @@ const numberChars = "0123456789";
 const symbols = "!@#$%^&*()-_+=[]{}|;':\",./<>?";
 
 function App() {
+  const [charLength, setCharLength] = useState<number>(0);
   const [isUppercaseChecked, setIsUppercaseChecked] = useState(false);
   const [isLowercaseChecked, setIsLowercaseChecked] = useState(false);
   const [isNumberChecked, setIsNumberChecked] = useState(false);
@@ -34,7 +35,7 @@ function App() {
   };
 
   const handleGeneratePassword = (
-    length,
+    charLength,
     isUppercaseChecked,
     isLowercaseChecked,
     isNumberChecked,
@@ -53,10 +54,15 @@ function App() {
     if (isNumberChecked) superString += numberChars;
     if (isSymbolChecked) superString += symbols;
 
+    if (superString === "") {
+      setPassword(superString);
+      return;
+    }
+
     console.log("superString::: ", superString);
 
     let genPassword = "";
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < charLength; i++) {
       const randomIndex = Math.floor(Math.random() * superString.length);
       genPassword += superString[randomIndex];
     }
@@ -72,6 +78,8 @@ function App() {
         <h1 className="text-grey text-center">Password Generator</h1>
         <PasswordField password={password} />
         <PasswordSettings
+          charLength={charLength}
+          setCharLength={setCharLength}
           onCheckboxSelection={handleCheckboxSelection}
           onGeneratePassword={handleGeneratePassword}
           isUppercaseChecked={isUppercaseChecked}
@@ -85,6 +93,8 @@ function App() {
 }
 
 function PasswordSettings({
+  charLength,
+  setCharLength,
   onCheckboxSelection,
   onGeneratePassword,
   isUppercaseChecked,
@@ -95,7 +105,7 @@ function PasswordSettings({
   return (
     <>
       <div className="flex flex-col gap-8 bg-dark-grey mt-4 p-4">
-        <LengthSlider />
+        <LengthSlider charLength={charLength} setCharLength={setCharLength} />
         <ComplexityOptions onCheckboxSelection={onCheckboxSelection} />
         <div className="flex flex-col gap-4">
           <StrengthGauge
@@ -105,6 +115,7 @@ function PasswordSettings({
             isSymbolChecked={isSymbolChecked}
           />
           <GenerateBtn
+            charLength={charLength}
             onGeneratePassword={onGeneratePassword}
             isUppercaseChecked={isUppercaseChecked}
             isLowercaseChecked={isLowercaseChecked}

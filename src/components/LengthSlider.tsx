@@ -1,8 +1,6 @@
 import { useState } from "react";
 
-export default function LengthSlider() {
-  const [charLength, setCharLength] = useState<number>(0);
-
+export default function LengthSlider({ charLength, setCharLength }) {
   return (
     <>
       <div className="grid grid-cols-2 items-center gap-4">

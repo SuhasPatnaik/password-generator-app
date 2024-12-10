@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 export default function GenerateBtn({
+  charLength,
   onGeneratePassword,
   isUppercaseChecked,
   isLowercaseChecked,
@@ -17,11 +18,18 @@ export default function GenerateBtn({
       !isSymbolChecked
     ) {
       setNoOptionsSelected(true);
+      onGeneratePassword(
+        charLength,
+        isUppercaseChecked,
+        isLowercaseChecked,
+        isNumberChecked,
+        isSymbolChecked
+      );
       return;
     }
     setNoOptionsSelected(false);
     onGeneratePassword(
-      28,
+      charLength,
       isUppercaseChecked,
       isLowercaseChecked,
       isNumberChecked,
