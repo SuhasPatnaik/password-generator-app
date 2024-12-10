@@ -10,7 +10,7 @@ export default function PasswordField({ password }) {
           disabled
           type="text"
           placeholder="P4$5W0rD"
-          className="focus:outline-hidden text-heading-md w-full max-w-[16rem] pr-4"
+          className="focus:outline-hidden text-heading-md w-full w-[16rem] pr-4"
           value={password}
         />
         {isCopied && <p className="text-neon-green pr-4">COPIED</p>}

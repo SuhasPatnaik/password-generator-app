@@ -21,7 +21,7 @@ export default function GenerateBtn({
     }
     setNoOptionsSelected(false);
     onGeneratePassword(
-      8,
+      28,
       isUppercaseChecked,
       isLowercaseChecked,
       isNumberChecked,
