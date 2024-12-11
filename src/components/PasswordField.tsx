@@ -8,7 +8,7 @@ export default function PasswordField({ password }) {
     if (isCopied) {
       timeout = setTimeout(() => {
         setIsCopied(false);
-      }, 10000);
+      }, 1500);
     }
 
     return () => clearTimeout(timeout);
@@ -25,26 +25,17 @@ export default function PasswordField({ password }) {
           value={password}
         />
         {isCopied && <p className="text-neon-green pr-2">COPIED!</p>}
-        {/* <img
-          src="/images/icon-copy.svg"
-          alt="Copy icon"
-          className={`object-none cursor-pointer justify-self-end ${
-            isCopied ? "opacity-50 pointer-events-none" : ""
-          }`}
-          onClick={() => {
-            navigator.clipboard.writeText(password);
-            setIsCopied(true);
-          }}
-        /> */}
-        <div
+        <button
           className={`copy-icon cursor-pointer object-none ${
             isCopied || !password ? "opacity-50 pointer-events-none" : ""
           }`}
           onClick={() => {
-            navigator.clipboard.writeText(password);
-            setIsCopied(true);
+            navigator.clipboard
+              .writeText(password)
+              .then(() => setIsCopied(true))
+              .catch(() => alert("Failed to copy password!"));
           }}
-        ></div>
+        ></button>
       </div>
     </>
   );

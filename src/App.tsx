@@ -41,12 +41,6 @@ function App() {
     isNumberChecked,
     isSymbolChecked
   ) => {
-    console.log("generate password fn. invoked");
-    console.log("isUppercaseChecked::: ", isUppercaseChecked);
-    console.log("isLowercaseChecked::: ", isLowercaseChecked);
-    console.log("isNumberChecked::: ", isNumberChecked);
-    console.log("isSymbolChecked::: ", isSymbolChecked);
-
     let superString = "";
 
     if (isUppercaseChecked) superString += uppercaseChars;
@@ -59,15 +53,11 @@ function App() {
       return;
     }
 
-    console.log("superString::: ", superString);
-
     let genPassword = "";
     for (let i = 0; i < charLength; i++) {
       const randomIndex = Math.floor(Math.random() * superString.length);
       genPassword += superString[randomIndex];
     }
-
-    console.log("genPassword::: ", genPassword);
 
     setPassword(genPassword);
   };
@@ -75,7 +65,7 @@ function App() {
   return (
     <>
       <div className="py-16">
-        <h1 className="text-grey text-center">Password Generator</h1>
+        <h1 className="text-grey text-center mb-6">Password Generator</h1>
         <PasswordField password={password} />
         <PasswordSettings
           charLength={charLength}
