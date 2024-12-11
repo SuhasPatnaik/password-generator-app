@@ -7,3 +7,16 @@
   cursor: pointer;
   z-index: 10;
 }
+
+.copy-icon {
+  mask: url("/images/icon-copy.svg") no-repeat center;
+  background-color: #a4ffaf;
+  width: 21px;
+  height: 24px;
+  padding: 1rem;
+  display: inline-block;
+}
+
+.copy-icon:hover {
+  background-color: white;
+}

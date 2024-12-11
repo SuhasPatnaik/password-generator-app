@@ -47,7 +47,9 @@ export default function GenerateBtn({
         <img src="images/icon-arrow-right.svg" alt="Right arrow" />
       </button>
       {noOptionsSelected && (
-        <p className="text-red text-sm">Please select atleast 1 option!</p>
+        <p className="text-red text-sm text-center">
+          Please select atleast 1 option!
+        </p>
       )}
     </>
   );
