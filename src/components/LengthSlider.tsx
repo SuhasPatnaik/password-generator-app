@@ -1,4 +1,12 @@
-export default function LengthSlider({ charLength, setCharLength }) {
+interface LengthSliderProps {
+  charLength: number;
+  setCharLength: (length: number) => void;
+}
+
+export default function LengthSlider({
+  charLength,
+  setCharLength,
+}: LengthSliderProps) {
   return (
     <>
       <div className="grid grid-cols-2 items-center gap-4">

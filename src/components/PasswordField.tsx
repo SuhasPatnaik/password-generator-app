@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 
-export default function PasswordField({ password }) {
+interface PasswordFieldProps {
+  password: string;
+}
+
+export default function PasswordField({ password }: PasswordFieldProps) {
   const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
-    let timeout;
+    let timeout: number;
     if (isCopied) {
       timeout = setTimeout(() => {
         setIsCopied(false);

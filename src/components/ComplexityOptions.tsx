@@ -1,11 +1,25 @@
-const complexityOptions = [
+interface ComplexityOption {
+  id: string;
+  name: string;
+}
+
+interface ComplexityOptionsProps {
+  onCheckboxSelection: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    id: string
+  ) => void;
+}
+
+const complexityOptions: ComplexityOption[] = [
   { id: "uppercase", name: "Include Uppercase Letters" },
   { id: "lowercase", name: "Include Lowercase Letters" },
   { id: "number", name: "Include Numbers" },
   { id: "symbol", name: "Include Symbols" },
 ];
 
-export default function ComplexityOptions({ onCheckboxSelection }) {
+export default function ComplexityOptions({
+  onCheckboxSelection,
+}: ComplexityOptionsProps) {
   return (
     <>
       <li className="list-none flex flex-col gap-2">

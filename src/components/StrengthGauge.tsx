@@ -1,4 +1,19 @@
-const strengthLevels = {
+interface StrengthLevel {
+  [key: string]: {
+    label: string;
+    filledBars: number;
+    color: string;
+  };
+}
+
+interface StrengthGaugeProps {
+  isUppercaseChecked: boolean;
+  isLowercaseChecked: boolean;
+  isNumberChecked: boolean;
+  isSymbolChecked: boolean;
+}
+
+const strengthLevels: StrengthLevel = {
   tooWeak: { label: "Too Weak!", filledBars: 1, color: "bg-red" },
   weak: { label: "Weak", filledBars: 2, color: "bg-orange" },
   medium: { label: "Medium", filledBars: 3, color: "bg-yellow" },
@@ -10,14 +25,14 @@ export default function StrengthGauge({
   isLowercaseChecked,
   isNumberChecked,
   isSymbolChecked,
-}) {
-  const numberOfCheckedOptions =
+}: StrengthGaugeProps) {
+  const numberOfCheckedOptions: number =
     Number(isUppercaseChecked) +
     Number(isLowercaseChecked) +
     Number(isNumberChecked) +
     Number(isSymbolChecked);
 
-  const strengthLevelKey =
+  const strengthLevelKey: keyof StrengthLevel =
     numberOfCheckedOptions <= 1
       ? "tooWeak"
       : numberOfCheckedOptions === 2

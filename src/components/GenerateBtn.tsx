@@ -1,5 +1,20 @@
 import { useState } from "react";
 
+interface GenerateBtnProps {
+  charLength: number;
+  onGeneratePassword: (
+    charLength: number,
+    isUppercaseChecked: boolean,
+    isLowercaseChecked: boolean,
+    isNumberChecked: boolean,
+    isSymbolChecked: boolean
+  ) => void;
+  isUppercaseChecked: boolean;
+  isLowercaseChecked: boolean;
+  isNumberChecked: boolean;
+  isSymbolChecked: boolean;
+}
+
 export default function GenerateBtn({
   charLength,
   onGeneratePassword,
@@ -7,8 +22,8 @@ export default function GenerateBtn({
   isLowercaseChecked,
   isNumberChecked,
   isSymbolChecked,
-}) {
-  const [noOptionsSelected, setNoOptionsSelected] = useState(false);
+}: GenerateBtnProps) {
+  const [noOptionsSelected, setNoOptionsSelected] = useState<boolean>(false);
 
   const onGenerateBtnClick = () => {
     if (
@@ -18,6 +33,7 @@ export default function GenerateBtn({
       !isSymbolChecked
     ) {
       setNoOptionsSelected(true);
+      // Reset the password -> empty
       onGeneratePassword(
         charLength,
         isUppercaseChecked,
@@ -27,7 +43,6 @@ export default function GenerateBtn({
       );
       return;
     }
-    setNoOptionsSelected(false);
     onGeneratePassword(
       charLength,
       isUppercaseChecked,
